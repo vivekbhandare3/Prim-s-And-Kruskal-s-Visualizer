@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;600&display=swap" rel="stylesheet">
+    <title>Kruskal's Algorithm Theory</title>
+    <link rel="stylesheet" href="stylekt.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-container">
+            <div class="nav-icon">
+                <img src="flow-chart.png" alt="Flow Chart Icon">
+            </div>
+            <h1 class="nav-title">
+                <span style="color:black">Kruskal's</span> <span style="color: #5BC9B1;">Algorithm Theory</span>
+            </h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#theory">Theory</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </div>
+
+    <div class="theory-main-content">
+        <div class="theory-box">
+            <h2 id="theory">What is Kruskal's Algorithm?</h2>
+            <p>
+                Kruskal's Algorithm is used to find the minimum spanning tree for a connected weighted graph. The main target of the algorithm is to find the subset of edges by using which we can traverse every vertex of the graph. It follows the greedy approach that finds an optimum solution at every stage instead of focusing on a global optimum.
+            </p>
+            <p>
+                The algorithm works as follows:
+            </p>
+            <ul>
+                <li>1. First, sort all the edges from low weight to high.</li>
+                <li>2. Now, take the edge with the lowest weight and add it to the spanning tree. If the edge to be added creates a cycle, then reject the edge.</li>
+                <li>3. Continue to add the edges until we reach all vertices, and a minimum spanning tree is created.</li>
+            </ul>
+        </div>
+
+        <div class="kruskals-algorithm">
+            <h2>Kruskal's Algorithm Code</h2>
+            <pre>
+                <code>
+                    Algorithm Kruskal(E, cost, n, t)
+                    {
+                    Construct a heap out of the edge costs using Heapify;
+                    for i:= 1 to n do parent[i] = -1; 
+                    // Each vertex is in a different set. 
+                    i := 0;  mincost = 0.0;
+                    while ((i < n-1) and (heap not empty)) do //adds the smallest edge that connects two previously unconnected components of the tree.
+                    {
+                    Delete a minimum cost edge (u,v) from the heap 
+                    and reheapify using Adjust;
+                    j = Find(u); k = Find(v); 
+                    if (j != k) then 
+                    { 
+                    i:= i+1; 
+                    t[i,1] := u; t[i,2] := v;
+                    mincost := mincost + cost[u,v];
+                     Union(j, k); 
+                    } 
+                    }
+                    if ( i != n-1) write( “No spanning tree” );
+                    else return(mincost); 
+                    }
+                </code>
+            </pre>
+        </div>
+
+        <div class="theory-page-image">
+            <div class="theory-image">
+                <img src="theory-image.png" alt="Kruskal's Algorithm Steps">
+                <ul>
+                    <li>Step 1.First, add the edge DE with weight 1 to the MST.</li>
+                    <li>Step 2.Add the edge DC with weight 2 to the MST as it is not creating the cycle.</li>
+                    <li>Step 3. Add the edge CA with weight 3 to the MST, as it is not creating any cycle or loop.</li>
+                    <li>Step 4.Now, pick the edge DB with weight 4 to the MST, as it is not forming the cycle.</li>
+                    <li>Step 5.After that, pick the edge CE with weight 6. Including this edge will create the cycle, so discard it.</li>
+                    <li>Step 6.After that, pick the edge BC with weight 10. Including that edge will create the cycle, so discard it.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="return-button">
+            <button onclick="window.location.href='index.html'">Back to Main Page</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Kruskal's Algorithm. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
